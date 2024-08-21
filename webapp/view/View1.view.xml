@@ -1,0 +1,89 @@
+<mvc:View controllerName="com.techm.routing.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>Manage Products}">
+        <content />
+        <IconTabBar
+            id="iconTabBar"
+            select="onQuickFilter"
+            expandable="false"
+            applyContentPadding="false">
+            <items>
+                <IconTabFilter
+                    key="all"
+                    showAll="true"
+                    count="{countModel>/all}"
+                    text="Products"/>
+                <IconTabSeparator/>
+                <IconTabFilter
+                    key="plentyOfStock"
+                    icon="sap-icon://message-success"
+                    iconColor="Positive"
+                    count="{countModel>/inStock}"
+                    text="InStock"/>
+                <IconTabFilter
+                    key="Shortage"
+                    icon="sap-icon://message-warning"
+                    iconColor="Critical"
+                    count="{countModel>/Shortage}"
+                    text="Shortage"/>
+                <IconTabFilter
+                    key="outOfStock"
+                    icon="sap-icon://message-error"
+                    iconColor="Negative"
+                    count="{countModel>/outOfStock}"
+                    text="OutofStock"/>
+            </items>
+        </IconTabBar>
+        <Table 
+				id="productsTable"
+				headerText="Products" 
+				items="{
+                    path: 'ProductsJSONModel>/'
+                }"
+                mode="SingleSelectMaster"
+                selectionChange="onPress">
+				<headerToolbar>
+                    <Toolbar>
+                        <Title
+                            id="tableHeader"
+                            text="Products"/>
+                        <ToolbarSpacer />
+                        <SearchField
+                            id="searchField"
+                            search="onFilterProducts"
+                            width="auto"/>
+                    </Toolbar>
+                </headerToolbar>
+				
+				<columns>
+					<Column>
+						<Text text="Product Name" />
+					</Column>
+					<Column>
+						<Text text="Supplier" />
+					</Column>
+					<Column>
+						<Text text="Price" />
+					</Column>
+					<Column>
+						<Text text="UnitsInStock" />
+					</Column>
+					<Column>
+						<Text text="UnitsOnOrder" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation">
+                    <cells>
+                        <Text text="{ProductsJSONModel>ProductName}"></Text>
+                        <Text text="{ProductsJSONModel>Supplier/CompanyName}"></Text>
+                        <ObjectNumber unit="EUR" number="{ProductsJSONModel>UnitPrice}"/>
+                        <Text text="{ProductsJSONModel>UnitsInStock} PC"></Text>
+                        <Text text="{ProductsJSONModel>UnitsOnOrder} PC"></Text>
+                    </cells>
+                </ColumnListItem>
+				</items>
+			</Table>
+    </Page>
+</mvc:View>

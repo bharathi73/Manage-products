@@ -1,0 +1,52 @@
+<mvc:View controllerName="com.techm.routing.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:m="sap.m" xmlns="sap.uxap" xmlns:f="sap.ui.layout.form">
+        <ObjectPageLayout id="ObjectPageLayout">
+            <headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="{ProductsJSONModel>ProductName}"/>
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:Title text="{ProductsJSONModel>ProductName}"/>
+				</snappedHeading>
+            </ObjectPageDynamicHeaderTitle>
+            </headerTitle>
+            <headerContent>
+                <f:SimpleForm >
+                    <f:content>
+                        <m:Label text="Product ID" />
+                        <m:Text text="{ProductsJSONModel>ProductID}" />
+                        <m:Label text="Price" />
+                        <m:Text text="{ProductsJSONModel>UnitPrice} EUR" />
+                    </f:content>
+                </f:SimpleForm>
+            </headerContent>
+            <sections>
+                <ObjectPageSection titleUppercase="false" title="Supplier Info">
+                    <subSections>
+                        <ObjectPageSubSection titleUppercase="false">
+                            <f:SimpleForm >
+                                <f:content>
+                                    <m:Label text="Name" />
+                                    <m:Text text="{ProductsJSONModel>Supplier/CompanyName}" />
+                                    <m:Label text="Street/No." />
+                                    <m:Text text="{ProductsJSONModel>Supplier/Address}" />
+                                    <m:Label text="ZIP Code/City" />
+                                    <m:Text text="{ProductsJSONModel>Supplier/PostalCode}" />
+                                    <m:Label text="Country" />
+                                    <m:Text text="{ProductsJSONModel>Supplier/Country}" />
+                                </f:content>
+                            </f:SimpleForm>
+                        </ObjectPageSubSection>
+                    </subSections>
+                    <subSections>
+                        <ObjectPageSubSection title="Comments" >
+                            <m:TextArea placeholder="Post Something Here" width="100%"></m:TextArea>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+            </sections>
+        </ObjectPageLayout>
+</mvc:View>
